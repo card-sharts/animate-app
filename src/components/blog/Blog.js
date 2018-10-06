@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import Essays from './Essays';
 
 class Blog extends PureComponent {
   state = {  }
@@ -7,6 +8,7 @@ class Blog extends PureComponent {
     return (
       <section>
         <h2>Blog</h2>
+        <Essays/>
       </section>
     );
   }
