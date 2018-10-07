@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import styles from './Photo.css';
 
 class Photo extends PureComponent {
@@ -8,13 +9,12 @@ class Photo extends PureComponent {
   };
 
   render() { 
-    const { url, caption, tags  } = this.props.photo;
+    const { url, _id } = this.props.photo;
     return (
       <div className={styles.photo}>
-        <img src={url}/>
-        <p>{caption}</p>
-
-
+        <Link to={`/photo/${_id}`}>
+          <img src={url}/>
+        </Link>
       </div>
     );
   }
