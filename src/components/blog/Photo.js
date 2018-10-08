@@ -12,9 +12,6 @@ class Photo extends PureComponent {
     return (
       <div className={styles.photo}>
         <img src={url}/>
-        <p>{caption}</p>
-
-
       </div>
     );
   }

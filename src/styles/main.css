@@ -2,3 +2,19 @@
   margin: 0px;
   box-sizing: border-box;
 }
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Coda Caption', sans-serif;
+}
+
+p, a, button, input {
+  font-family: 'Mitr', sans-serif;
+  font-weight: 200;
+}
+
+
+nav a {
+  font-family: 'Coda Caption', sans-serif;
+  text-decoration: none;
+}
