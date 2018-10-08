@@ -1,0 +1,15 @@
+:local(.header) {
+  background: black;
+  color: white;
+
+  ul {
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  a {
+    color: white;
+  }
+}
