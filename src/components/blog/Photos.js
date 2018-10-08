@@ -11,7 +11,6 @@ class Photos extends PureComponent {
     const { photos } = this.props;
     return (
       <section>
-        <h2>Photos</h2>
         {
           photos.map(photo => (
             <Photo key={photo._id} photo={photo}/>
