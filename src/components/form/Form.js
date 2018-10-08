@@ -4,6 +4,7 @@ import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import styles from './Form.css';
 
+
 class Form extends PureComponent {
   state = {
     essay: {},
@@ -12,6 +13,10 @@ class Form extends PureComponent {
   };
   
   handleDrop = files => {
+
+    // cloudinary.openUploadWidget({ 
+    //   cloudName: 'demo', uploadPreset: 'preset1'}, (error, result) => { })
+
     // Push all the axios request promise into a single array
     const uploaders = files.map(file => {
       
