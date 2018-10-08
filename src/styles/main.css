@@ -5,7 +5,7 @@
 
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Coda Caption', sans-serif;
+  font-family: 'Abel', sans-serif;
 }
 
 p, a, button, input {
@@ -15,6 +15,6 @@ p, a, button, input {
 
 
 nav a {
-  font-family: 'Coda Caption', sans-serif;
+  font-family: 'Abel', sans-serif;
   text-decoration: none;
 }
