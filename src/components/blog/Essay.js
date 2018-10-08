@@ -1,13 +1,19 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Photos from './Photos';
 import mockEssay from './mockEssay';
 import ReactModal from 'react-modal';
+import { connect } from 'react-redux';
+import { getSelectedPhoto } from './reducers';
 
 class Essay extends PureComponent {
   state = {
     ...mockEssay,
     showModal: false
+  };
+
+  static propTypes = {
+    selectedPhoto: PropTypes.object
   };
 
   handleToggleModal = () => {
@@ -17,6 +23,7 @@ class Essay extends PureComponent {
 
   render() { 
     const { title, photos } = this.state;
+    const { selectedPhoto } = this.props;
 
     return (
       <section>
@@ -27,12 +34,22 @@ class Essay extends PureComponent {
           contentLabel='modalTest'
           ariaHideApp={false}
         >
-          <button onClick={this.handleToggleModal}>Close</button>
-          <h2>I am a modal component</h2>
+          {selectedPhoto && 
+            <Fragment>
+              <button onClick={this.handleToggleModal}>Close</button>
+              <h2>{selectedPhoto.caption}</h2>
+              <h2>{selectedPhoto._id}</h2>
+              <img src={selectedPhoto.url}/>
+            </Fragment>
+          }
         </ReactModal>
       </section>
     );
   }
 }
  
-export default Essay;
+export default connect(
+  state => ({
+    selectedPhoto: getSelectedPhoto(state)
+  })
+)(Essay);
