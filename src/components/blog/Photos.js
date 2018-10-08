@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Photo from './Photo';
+
 class Photos extends PureComponent {
 
   static propTypes = {

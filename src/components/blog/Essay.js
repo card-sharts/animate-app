@@ -15,10 +15,6 @@ class Essay extends PureComponent {
     this.setState({ showModal: !showModal });
   };
 
-  // handleCloseModal() {
-  //   this.setState({ showModal: false })
-  // }
-
   render() { 
     const { title, photos } = this.state;
 
@@ -31,6 +27,7 @@ class Essay extends PureComponent {
           contentLabel='modalTest'
           ariaHideApp={false}
         >
+          <button onClick={this.handleToggleModal}>Close</button>
           <h2>I am a modal component</h2>
         </ReactModal>
       </section>

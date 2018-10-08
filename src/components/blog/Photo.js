@@ -1,17 +1,21 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Photo.css';
+import { connect } from 'react-redux';
+import { setModalPhoto } from './actions';
 
 class Photo extends PureComponent {
   static propTypes = {
     photo: PropTypes.object.isRequired,
-    toggleModal: PropTypes.func.isRequired
+    toggleModal: PropTypes.func.isRequired,
+    setModalPhoto: PropTypes.func.isRequired
   };
 
   handleModal = () => {
-    const { toggleModal } = this.props;
+    const { toggleModal, photo, setModalPhoto } = this.props;
+    setModalPhoto(photo);
     toggleModal();
-  }
+  };
 
   render() { 
     const { url, caption, tags  } = this.props.photo;
@@ -25,4 +29,7 @@ class Photo extends PureComponent {
   }
 }
  
-export default Photo;
+export default connect(
+  null,
+  { setModalPhoto }
+)(Photo);
