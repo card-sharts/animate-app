@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Dropzone from 'react-dropzone';
-import request from 'superagent';
 import { openUploadWidget } from '../../services/cloudinary';
+import { photosUploaded } from './actions';
 
 class PhotoUploader extends Component {
   state = {  }
 
-  context = {
-    cloud_name: 'animate',
-    upload_preset: 'audapag8'
+  static propTypes = {
+    photos: PropTypes.array,
+    photosUploaded: PropTypes.func.isRequired
   };
 
-  uploadImages() {
+  uploadImages = () => {
     const uploadOptions = {
-      tags: 'myphotoalbum',
+      tags: ['myphotoalbum'],
       cloud_name: 'animate',
       upload_preset: 'audapag8'
     };
     openUploadWidget(uploadOptions, (error, photos) => {
-      if (!error) {
-        this.props.onPhotosUploaded(photos);
+      if(!error) {
+        this.props.photosUploaded(photos);
       } else {
         console.log(error);
       }
@@ -36,4 +36,7 @@ class PhotoUploader extends Component {
   }
 }
  
-export default PhotoUploader;
+export default connect(
+  state => ({ photos: state.photos }),
+  { photosUploaded }
+)(PhotoUploader);
