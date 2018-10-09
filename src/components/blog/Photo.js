@@ -24,7 +24,6 @@ class Photo extends PureComponent {
     return (
       <div className={styles.photo} onClick={this.handleModal}>
         <img src={url}/>
-        <p>{caption}</p>
       </div>
     );
   }

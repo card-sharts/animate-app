@@ -2,7 +2,7 @@
 const { resolve } = require('path');
 const CleanPlugin = require('clean-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
-
+const webpack = require('webpack');
 const buildDir = 'docs';
 const path = resolve(__dirname, buildDir);
 
@@ -21,9 +21,8 @@ module.exports = {
   },
   plugins: [
     new CleanPlugin(`${path}/bundle.*.js`),
-    new HtmlPlugin({ template: './src/index.html' })
+    new HtmlPlugin({ template: './src/index.html' }),
   ],
-  
   module: {
     rules: [
       // js
