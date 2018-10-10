@@ -4,8 +4,8 @@ import Photos from './Photos';
 import mockEssay from './mockEssay';
 import ReactModal from 'react-modal';
 import { connect } from 'react-redux';
-import { getSelectedPhoto } from './reducers';
-import { getOneEssay } from '../../services/api';
+import { getSelectedPhoto, getSelectedEssay } from './reducers';
+import { loadEssay } from './actions';
 
 class Essay extends PureComponent {
   state = {
@@ -20,8 +20,7 @@ class Essay extends PureComponent {
   };
   
   componentDidMount() {
-    getOneEssay(this.props.match.params.id)
-      .then(_essay => this.setState({ essay: _essay }));
+    loadEssay(this.props.match.params.id);
   }
 
   handleToggleModal = () => {
@@ -57,7 +56,9 @@ class Essay extends PureComponent {
 }
  
 export default connect(
-  state => ({
-    selectedPhoto: getSelectedPhoto(state)
-  })
+  (state) => ({
+    selectedPhoto: getSelectedPhoto(state),
+    essay: getSelectedEssay(state)
+  }),
+  { loadEssay }
 )(Essay);

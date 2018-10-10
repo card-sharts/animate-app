@@ -1,9 +1,10 @@
 import { 
   PHOTO_SELECTED,
-  ESSAYS_LOADED
+  ESSAYS_LOADED,
+  ESSAY_SELECTED
 } from './reducers';
 
-import { getAllEssays } from '../../services/api';
+import { getAllEssays, getOneEssay } from '../../services/api';
 
 export const setModalPhoto = (photo) => {
   return {
@@ -16,5 +17,12 @@ export const loadEssays = () => {
   return {
     type: ESSAYS_LOADED,
     payload: getAllEssays()
+  };
+};
+
+export const loadEssay = id => {
+  return {
+    type: ESSAY_SELECTED,
+    payload: getOneEssay(id)
   };
 };
