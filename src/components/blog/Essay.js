@@ -5,11 +5,13 @@ import mockEssay from './mockEssay';
 import ReactModal from 'react-modal';
 import { connect } from 'react-redux';
 import { getSelectedPhoto } from './reducers';
+import { getOneEssay } from '../../services/api';
 
 class Essay extends PureComponent {
   state = {
     ...mockEssay,
-    showModal: false
+    showModal: false,
+    essay: null
   };
 
   static propTypes = {
@@ -18,7 +20,8 @@ class Essay extends PureComponent {
   };
   
   componentDidMount() {
-    console.log(this.props.match);
+    getOneEssay(this.props.match.params.id)
+      .then(_essay => this.setState({ essay: _essay }));
   }
 
   handleToggleModal = () => {
