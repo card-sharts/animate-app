@@ -43,7 +43,7 @@ export const previews = (state = [], { type, payload }) => {
     case PHOTOS_FETCHED:
       return [...payload];
     case PHOTOS_UPLOADED: {
-      return [...state, payload];
+      return [...state, ...payload];
     }
     case DELETE_UPLOADED_PHOTO:
       return state.filter(photo => photo.public_id !== payload);

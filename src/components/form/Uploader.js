@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { openUploadWidget } from '../../services/cloudinary';
-import { onPhotosUpload } from './actions';
-import { getPreviews } from './reducers';
 
 class Uploader extends Component {
   state = {  }
@@ -15,7 +12,7 @@ class Uploader extends Component {
 
   uploadImages = () => {
     const uploadOptions = {
-      tags: 'myphotoalbum',
+      tags: ['myphotoalbum'],
       cloudName: 'animate',
       uploadPreset: 'audapag8'
     };
@@ -37,4 +34,4 @@ class Uploader extends Component {
   }
 }
  
-export default Uploader
+export default Uploader;

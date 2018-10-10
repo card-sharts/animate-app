@@ -6,27 +6,20 @@ import Previews from './Previews';
 import { onPhotosUpload } from './actions';
 import { getPreviews } from './reducers';
 import FormControl from './FormControl';
+import ReferencesForm from './ReferencesForm';
 import { submitEssay } from '../../services/api';
 import styles from './Form.css';
 
 
 class Form extends PureComponent {
   state = {
-    questions: [
-      'What is your philosophy or approach to wedding photography?',
-      'What is the context of this wedding? i.e. couples story, wedding day story, etc.',
-      'What was your biggest challenge as a photographer on this wedding day?',
-      'What was your greatest success on this wedding day?'
-    ],
-    referenceType: ['Venue', 'Planner/coordinator', 'Florist', 'Caterer', 'DJ', 'Entertainment', 'Hair', 'Makeup', 'Officiant', 'Other'],
+    title: '',
     q1: '',
     q2: '',
     q3: '',
     q4: '',
     photos: [],
-    references: [],
-    website: '',
-    instagram: ''
+    references: []
   };
 
   static propTypes = {
@@ -44,8 +37,15 @@ class Form extends PureComponent {
   };
 
   render() { 
-    const { questions, referenceType, website, instagram } = this.state;
     const { previews, onPhotosUpload } = this.props;
+
+    const questions = [
+      'What is your philosophy or approach to wedding photography?',
+      'What is the context of this wedding? i.e. couples story, wedding day story, etc.',
+      'What was your biggest challenge as a photographer on this wedding day?',
+      'What was your greatest success on this wedding day?'
+    ];
+    
     return (
       <section className={styles.form}>
         <form onSubmit={this.handleSubmit}>
@@ -65,18 +65,7 @@ class Form extends PureComponent {
               }
             </ol>
           </div>
-          <div>
-            <select name="type" onChange={this.handleChange}>
-              {
-                referenceType.map((type, i) => (
-                  <option key={i} value={type}>{type}</option>
-                ))
-              }
-            </select>
-            <InputControl name="website" value={website} onChange={this.handleChange}/>
-            <InputControl name="instagram" value={instagram} onChange={this.handleChange}/>
-            <button>Add</button>
-          </div>
+          <ReferencesForm />
           <button>Submit</button>
         </form>
         <section>
@@ -96,12 +85,3 @@ export default connect(
   { onPhotosUpload }
 )(Form);
 
-
-const InputControl = (props) => (
-  <p>
-    <label>
-      {props.name}:
-      <input {...props}/>
-    </label>
-  </p>
-);

@@ -18,7 +18,7 @@ class FormControl extends PureComponent {
       <section className={styles.formControl}>
         <li className="control">
           {children}
-          <textarea name={name} value={value} onChange={onChange} rows="5" cols="70"/>
+          <textarea name={name} value={value} onChange={onChange} rows="4" cols="70"/>
         </li>
       </section>
     );
