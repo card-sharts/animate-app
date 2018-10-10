@@ -9,7 +9,8 @@ class Essays extends PureComponent {
 
   static propTypes = {
     loadEssays: PropTypes.func.isRequired,
-    essays: PropTypes.array
+    essays: PropTypes.array,
+    match: PropTypes.object
   };
 
   componentDidMount() {
@@ -17,10 +18,20 @@ class Essays extends PureComponent {
   }
 
   render() { 
+    const { essays } = this.props;
+
     return (
       <div>
         <h2>Featured Essay</h2>
-        <NavLink exact to="/essay">Ride or Die</NavLink>
+        {/* <NavLink exact to="/essay/:id">Ride or Die</NavLink> */}
+        {essays && 
+          essays.map(essay => (
+            <NavLink 
+              exact to={`/essay/${essay._id} `}
+              key={essay._id}
+            >{essay.title}</NavLink>
+          ))
+        }
 
       </div>
       

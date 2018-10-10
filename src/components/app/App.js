@@ -22,7 +22,7 @@ class App extends PureComponent {
               <Route exact path="/" component={Home}/>
               <Route exact path="/about" component={About}/>
               <Route exact path="/blog" component={Blog}/>
-              <Route exact path="/essay" component={Essay}/>
+              <Route exact path="/essay/:id" component={Essay}/>
               <Route exact path="/faq" component={Faq}/>
               <Route exact path="/form" component={Form}/>
               <Route exact path="/photo/:id" component={PhotoDetail}/>
