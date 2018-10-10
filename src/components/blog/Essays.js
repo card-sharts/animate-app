@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loadEssays } from './actions';
 import { getEssays } from './reducers';
+import styles from './Essays.css';
 
 class Essays extends PureComponent {
 
@@ -21,9 +22,8 @@ class Essays extends PureComponent {
     const { essays } = this.props;
 
     return (
-      <div>
+      <div className={styles.essays}>
         <h2>Featured Essay</h2>
-        {/* <NavLink exact to="/essay/:id">Ride or Die</NavLink> */}
         {essays && 
           essays.map(essay => (
             <NavLink 
