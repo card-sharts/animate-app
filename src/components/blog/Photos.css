@@ -1,4 +1,5 @@
 :local(.photos) {
   display: grid;
-  grid-template: 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-gap: 5px;
 }

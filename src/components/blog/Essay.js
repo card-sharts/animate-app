@@ -4,17 +4,24 @@ import Photos from './Photos';
 import mockEssay from './mockEssay';
 import ReactModal from 'react-modal';
 import { connect } from 'react-redux';
-import { getSelectedPhoto } from './reducers';
+import { getSelectedPhoto, getSelectedEssay } from './reducers';
+import { loadEssay } from './actions';
 
 class Essay extends PureComponent {
   state = {
     ...mockEssay,
-    showModal: false
+    showModal: false,
+    essay: null
   };
 
   static propTypes = {
-    selectedPhoto: PropTypes.object
+    selectedPhoto: PropTypes.object,
+    match: PropTypes.object
   };
+  
+  componentDidMount() {
+    loadEssay(this.props.match.params.id);
+  }
 
   handleToggleModal = () => {
     let { showModal } = this.state;
@@ -49,7 +56,9 @@ class Essay extends PureComponent {
 }
  
 export default connect(
-  state => ({
-    selectedPhoto: getSelectedPhoto(state)
-  })
+  (state) => ({
+    selectedPhoto: getSelectedPhoto(state),
+    essay: getSelectedEssay(state)
+  }),
+  { loadEssay }
 )(Essay);
