@@ -13,8 +13,13 @@ class Essay extends PureComponent {
   };
 
   static propTypes = {
-    selectedPhoto: PropTypes.object
+    selectedPhoto: PropTypes.object,
+    match: PropTypes.object
   };
+  
+  componentDidMount() {
+    console.log(this.props.match);
+  }
 
   handleToggleModal = () => {
     let { showModal } = this.state;
