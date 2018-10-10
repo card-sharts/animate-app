@@ -16,19 +16,34 @@ class ReferencesForm extends PureComponent {
     this.setState({ [target.name]: target.value });
   };
 
-  handleAdd = () => {
-    return this.props.addReference(this.state)
-      .then(() => this.setState({ type: '', website: '', instagram: '' }));
-    
+  handleAdd = event => {
+    event.preventDefault();
+    const { type, website, instagram } = this.state;
+    if(type && (website || instagram)) {
+      this.props.addReference(this.state);
+      this.setState({ type: '', website: '', instagram: '' });
+    }
+    else console.log('need a type or website or instagram');
   };
 
   render() { 
-    const { website, instagram } = this.state;
-    const referenceType = ['Venue', 'Planner/coordinator', 'Florist', 'Caterer', 'DJ', 'Entertainment', 'Hair', 'Makeup', 'Officiant', 'Other'];
+    const { type, website, instagram } = this.state;
+    const referenceType = [
+      'Venue',
+      'Planner/coordinator',
+      'Florist', 'Caterer',
+      'DJ',
+      'Entertainment',
+      'Hair',
+      'Makeup',
+      'Officiant',
+      'Other'
+    ];
 
     return (
       <div>
-        <select name="type" onChange={this.handleChange}>
+        <select name="type" value={type} onChange={this.handleChange}>
+          <option disabled value=""></option>
           {
             referenceType.map((type, i) => (
               <option key={i} value={type}>{type}</option>

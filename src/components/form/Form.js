@@ -31,13 +31,18 @@ class Form extends PureComponent {
     this.setState({ [target.name]: target.value });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
     submitEssay(this.state);
   };
 
+  addReference = reference => {
+    this.setState(({ references }) => ({ references: [...references, reference] }));
+  };
+
   render() { 
     const { previews, onPhotosUpload } = this.props;
+    const { references } = this.state;
 
     const questions = [
       'What is your philosophy or approach to wedding photography?',
@@ -65,7 +70,20 @@ class Form extends PureComponent {
               }
             </ol>
           </div>
-          <ReferencesForm />
+          <div>
+            <h2>References</h2>
+            <ReferencesForm addReference={this.addReference}/>
+            
+            {
+              references.map(ref => (
+                <li key={ref.type}>
+                  <p>{ref.type}</p>
+                  {ref.website && <p>Website: {ref.website}</p>}
+                  {ref.instagram && <p>Instagram: {ref.instagram}</p>}
+                </li>
+              ))
+            }
+          </div>
           <button>Submit</button>
         </form>
         <section>

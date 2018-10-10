@@ -9,7 +9,7 @@ import { selectedPhoto, essays } from '../components/blog/reducers';
 const rootReducer = combineReducers({
   error,
   loading,
-  previews
+  previews,
   selectedPhoto,
   essays
 });

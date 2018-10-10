@@ -14,7 +14,7 @@ export function selectedPhoto(state = null, { type, payload }) {
   }
 }
 
-export function selectedEssay(state = null, ( type, payload )) {
+export function selectedEssay(state = null, { type, payload }) {
   switch(type) {
     case ESSAY_SELECTED:
       return payload;
