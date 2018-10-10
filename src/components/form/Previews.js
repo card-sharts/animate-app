@@ -18,8 +18,8 @@ class Previews extends PureComponent {
           previews.length > 0
             ? previews.map(preview => (
               <Preview
-                key={preview.public_id}
-                publicId={preview.public_id}
+                key={preview.publicId}
+                publicId={preview.publicId}
               />
             ))
             : <p>No photos uploaded yet.</p>

@@ -33,7 +33,11 @@ class Form extends PureComponent {
 
   handleSubmit = event => {
     event.preventDefault();
-    submitEssay(this.state);
+    const { previews } = this.props;
+    submitEssay({
+      ...this.state,
+      photos: previews
+    });
   };
 
   addReference = reference => {
@@ -42,7 +46,7 @@ class Form extends PureComponent {
 
   render() { 
     const { previews, onPhotosUpload } = this.props;
-    const { references } = this.state;
+    const { title, references } = this.state;
 
     const questions = [
       'What is your philosophy or approach to wedding photography?',
@@ -56,7 +60,7 @@ class Form extends PureComponent {
         <form onSubmit={this.handleSubmit}>
           <div>
             <label>Title</label>
-            <input/>
+            <input name='title' value={title} onChange={this.handleChange}/>
           </div>
           <div>
             <h2>Questions</h2>

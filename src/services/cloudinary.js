@@ -43,7 +43,7 @@ export const fetchPhotos = cloudName => {
 };
 
 
-export const handleDrop = files => {
+export const uploadPhotos = files => {
   // Push all the axios request promise into a single array
   const uploaders = files.map(file => {
     // Initial FormData
@@ -59,13 +59,14 @@ export const handleDrop = files => {
       headers: { 'X-Requested-With': 'XMLHttpRequest' },
     }).then(response => {
       const data = response.data;
-      const fileURL = data.secure_url // You should store this URL for future references in your app
-      console.log(data);
-    })
+      const photoUrl = data.secure_url; // You should store this URL for future references in your app
+      return {
+        publicId: data.public_id,
+        photoUrl
+      };
+    });
   });
 
   // Once all the files are uploaded 
-  axios.all(uploaders).then(() => {
-    // ... perform after upload is successful operation
-  });
+  return axios.all(uploaders);
 };

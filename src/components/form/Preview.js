@@ -11,11 +11,12 @@ class Preview extends PureComponent {
   render() { 
     return (
       <Image
+        cloudName="animate"
         publicId={this.props.publicId}
         className="thumbnail inline"
         width="150"
         height="150"
-        crop="fit"
+        crop="scale"
         quality="80"
       >
         <Transformation quality="auto" fetchFormat="auto" />

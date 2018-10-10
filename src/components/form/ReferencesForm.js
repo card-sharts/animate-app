@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import styles from './ReferencesForm.css';
 
 class ReferencesForm extends PureComponent {
   state = {
@@ -41,7 +42,7 @@ class ReferencesForm extends PureComponent {
     ];
 
     return (
-      <div>
+      <div className={styles.referencesForm}>
         <select name="type" value={type} onChange={this.handleChange}>
           <option disabled value=""></option>
           {
