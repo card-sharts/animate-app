@@ -16,11 +16,13 @@ class Essay extends PureComponent {
 
   static propTypes = {
     selectedPhoto: PropTypes.object,
-    match: PropTypes.object
+    match: PropTypes.object,
+    loadEssay: PropTypes.func.isRequired
   };
   
   componentDidMount() {
-    loadEssay(this.props.match.params.id);
+    const { loadEssay, match } = this.props;
+    loadEssay(match.params.id);
   }
 
   handleToggleModal = () => {
