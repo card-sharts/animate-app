@@ -6,16 +6,17 @@ import styles from './Photos.css';
 class Photos extends PureComponent {
 
   static propTypes = {
-    photos: PropTypes.array.isRequired
+    photos: PropTypes.array.isRequired,
+    toggleModal: PropTypes.func.isRequired
   };
 
   render() { 
-    const { photos } = this.props;
+    const { photos, toggleModal } = this.props;
     return (
       <section className={styles.photos}>
         {
           photos.map(photo => (
-            <Photo key={photo._id} photo={photo}/>
+            <Photo key={photo._id} photo={photo} toggleModal={toggleModal}/>
           ))
         }
       </section>
