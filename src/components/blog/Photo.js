@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import styles from './Photo.css';
 import { connect } from 'react-redux';
 import { setModalPhoto } from './actions';
@@ -23,7 +24,6 @@ class Photo extends PureComponent {
     return (
       <div className={styles.photo} onClick={this.handleModal}>
         <img src={url}/>
-        <p>{caption}</p>
       </div>
     );
   }

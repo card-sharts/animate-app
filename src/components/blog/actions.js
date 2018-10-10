@@ -1,9 +1,20 @@
-import { PHOTO_SELECTED } from './reducers';
+import { 
+  PHOTO_SELECTED,
+  ESSAYS_LOADED
+} from './reducers';
+
+import { getAllEssays } from '../../services/api';
 
 export const setModalPhoto = (photo) => {
-  console.log('MODAL ACTION REACHED');
   return {
     type: PHOTO_SELECTED,
     payload: photo
+  };
+};
+
+export const loadEssays = () => {
+  return {
+    type: ESSAYS_LOADED,
+    payload: getAllEssays()
   };
 };
