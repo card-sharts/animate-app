@@ -8,7 +8,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Abel', sans-serif;
 }
 
-p, a, button, input {
+p, a, button, input, label, li {
   font-family: 'Mitr', sans-serif;
   font-weight: 200;
 }

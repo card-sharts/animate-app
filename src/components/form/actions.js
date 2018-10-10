@@ -7,20 +7,20 @@ import {
 
 export const photosFetched = photos => ({
   type: PHOTOS_FETCHED,
-  photos: photos,
+  payload: photos,
 });
 
-export const photosUploaded = photos => ({
+export const onPhotosUpload = photos => ({
   type: PHOTOS_UPLOADED,
-  photos: photos,
+  payload: photos,
 });
 
 export const updateUploadedPhoto = uploadedPhoto => ({
   type: UPDATE_UPLOADED_PHOTO,
-  uploadedPhoto: uploadedPhoto,
+  payload: uploadedPhoto,
 });
 
 export const deleteUploadedPhoto = publicId => ({
   type: DELETE_UPLOADED_PHOTO,
-  publicId: publicId,
+  payload: publicId,
 });
