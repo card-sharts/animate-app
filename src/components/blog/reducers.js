@@ -1,5 +1,6 @@
 export const PHOTO_SELECTED = 'PHOTO_SELECTED';
 export const ESSAYS_LOADED = 'ESSAYS_LOADED';
+export const ESSAY_SELECTED = 'ESSAY_SELECTED';
 
 export const getSelectedEssay = state => state.selectedEssay;
 export const getSelectedPhoto = state => state.selectedPhoto;
