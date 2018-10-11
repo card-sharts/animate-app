@@ -18,6 +18,7 @@ class Form extends PureComponent {
     q2: '',
     q3: '',
     q4: '',
+    bangerUrl: 'test',
     photos: [],
     references: []
   };
