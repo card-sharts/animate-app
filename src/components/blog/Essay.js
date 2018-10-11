@@ -55,7 +55,7 @@ class Essay extends PureComponent {
                 <button onClick={this.handleToggleModal}>Close</button>
                 <h2>{selectedPhoto.caption}</h2>
                 <h2>{selectedPhoto._id}</h2>
-                <img src={selectedPhoto.url}/>
+                <img src={selectedPhoto.photoUrl}/>
               </Fragment>
             }
           </ReactModal>
