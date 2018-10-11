@@ -11,17 +11,18 @@ class Essay extends PureComponent {
   state = {
     ...mockEssay,
     showModal: false,
-    essay: null
   };
 
   static propTypes = {
     selectedPhoto: PropTypes.object,
+    essay: PropTypes.object,
     match: PropTypes.object,
     loadEssay: PropTypes.func.isRequired
   };
   
   componentDidMount() {
     const { loadEssay, match } = this.props;
+    console.log('we mounted');
     loadEssay(match.params.id);
   }
 
@@ -31,27 +32,35 @@ class Essay extends PureComponent {
   };
 
   render() { 
-    const { title, photos } = this.state;
+    // const { title, photos } = this.props.essay;
     const { selectedPhoto } = this.props;
 
     return (
       <section>
-        <h2>{title}</h2>
-        <Photos photos={photos} toggleModal={this.handleToggleModal}/>
-        <ReactModal
-          isOpen={this.state.showModal}
-          contentLabel='modalTest'
-          ariaHideApp={false}
-        >
-          {selectedPhoto && 
-            <Fragment>
-              <button onClick={this.handleToggleModal}>Close</button>
-              <h2>{selectedPhoto.caption}</h2>
-              <h2>{selectedPhoto._id}</h2>
-              <img src={selectedPhoto.url}/>
-            </Fragment>
-          }
-        </ReactModal>
+        {this.props.essay &&
+        <div>
+          <h2>{this.props.essay.title}</h2>
+          <p>{this.props.essay.q1}</p>
+          <p>{this.props.essay.q2}</p>
+          <p>{this.props.essay.q3}</p>
+          <p>{this.props.essay.q4}</p>
+          <Photos photos={this.props.essay.photos} toggleModal={this.handleToggleModal}/>
+          <ReactModal
+            isOpen={this.state.showModal}
+            contentLabel='modalTest'
+            ariaHideApp={false}
+          >
+            {selectedPhoto && 
+              <Fragment>
+                <button onClick={this.handleToggleModal}>Close</button>
+                <h2>{selectedPhoto.caption}</h2>
+                <h2>{selectedPhoto._id}</h2>
+                <img src={selectedPhoto.url}/>
+              </Fragment>
+            }
+          </ReactModal>
+        </div>
+        }
       </section>
     );
   }

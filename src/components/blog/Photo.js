@@ -19,11 +19,11 @@ class Photo extends PureComponent {
   };
 
   render() { 
-    const { url, caption, tags  } = this.props.photo;
+    const { photoUrl, caption, tags  } = this.props.photo;
 
     return (
       <div className={styles.photo} onClick={this.handleModal}>
-        <img src={url}/>
+        <img src={photoUrl}/>
       </div>
     );
   }
