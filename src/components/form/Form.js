@@ -1,66 +1,110 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Dropzone from 'react-dropzone';
-import axios from 'axios';
+import Uploader from './Uploader';
+import Previews from './Previews';
+import { onPhotosUpload } from './actions';
+import { getPreviews } from './reducers';
+import FormControl from './FormControl';
+import ReferencesForm from './ReferencesForm';
+import { submitEssay } from '../../services/api';
 import styles from './Form.css';
 
 
 class Form extends PureComponent {
   state = {
-    essay: {},
+    title: '',
+    q1: '',
+    q2: '',
+    q3: '',
+    q4: '',
+    bangerUrl: 'test',
     photos: [],
     references: []
   };
-  
-  handleDrop = files => {
 
-    // cloudinary.openUploadWidget({ 
-    //   cloudName: 'demo', uploadPreset: 'preset1'}, (error, result) => { })
+  static propTypes = {
+    previews: PropTypes.array,
+    onPhotosUpload: PropTypes.func
+  };
 
-    // Push all the axios request promise into a single array
-    const uploaders = files.map(file => {
-      
-      const formData = new FormData();
-      formData.append('file', file);
-      // formData.append('tags', `codeinfuse, medium, gist`);
-      formData.append('upload_preset', 'jxhco1rb');
-      formData.append('api_key', '896387744652518');
-      formData.append('timestamp', (Date.now() / 1000) | 0);
-      
-      // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
-      return axios.post('https://api.cloudinary.com/v1_1/animate/image/upload', formData, {
-        headers: { 'X-Requested-With': 'XMLHttpRequest' },
-      }).then(response => {
-        const data = response.data;
-        const fileURL = data.secure_url; // You should store this URL for future references in your app
-        console.log(data);
-        return this.setState(({ photos }) => ({ photos: [...photos, fileURL] }));
-      });
-    });
-  
-    // Once all the files are uploaded 
-    axios.all(uploaders).then(() => {
-      // ... perform after upload is successful operation
+  handleChange = ({ target }) => {
+    this.setState({ [target.name]: target.value });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    const { previews } = this.props;
+    submitEssay({
+      ...this.state,
+      photos: previews
     });
   };
 
+  addReference = reference => {
+    this.setState(({ references }) => ({ references: [...references, reference] }));
+  };
+
   render() { 
+    const { previews, onPhotosUpload } = this.props;
+    const { title, references } = this.state;
+
+    const questions = [
+      'What is your philosophy or approach to wedding photography?',
+      'What is the context of this wedding? i.e. couples story, wedding day story, etc.',
+      'What was your biggest challenge as a photographer on this wedding day?',
+      'What was your greatest success on this wedding day?'
+    ];
+    
     return (
       <section className={styles.form}>
-        <h2>Form</h2>
-        <input/>
-        <Dropzone 
-          onDrop={this.handleDrop} 
-          multiple 
-          accept="image/*" 
-        >
-          <p>Drop your files or click here to upload</p>
-        </Dropzone>
-        <button>Upload</button>
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <label>Title</label>
+            <input name='title' value={title} onChange={this.handleChange}/>
+          </div>
+          <div>
+            <h2>Questions</h2>
+            <ol>
+              {
+                questions.map((question, i) => (
+                  <FormControl name={'q' + (i + 1)} value={this.state['q' + (i + 1)]} onChange={this.handleChange} key={i}>
+                    <p>{question}</p>
+                  </FormControl>
+                ))
+              }
+            </ol>
+          </div>
+          <div>
+            <h2>References</h2>
+            <ReferencesForm addReference={this.addReference}/>
+            
+            {
+              references.map(ref => (
+                <li key={ref.type}>
+                  <p>{ref.type}</p>
+                  {ref.website && <p>Website: {ref.website}</p>}
+                  {ref.instagram && <p>Instagram: {ref.instagram}</p>}
+                </li>
+              ))
+            }
+          </div>
+          <button>Submit</button>
+        </form>
+        <section>
+          <Uploader onPhotosUpload={onPhotosUpload}/>
+          <Previews previews={previews}/>
+        </section>
       </section>
       
     );
   }
 }
  
-export default Form;
+export default connect(
+  state => ({
+    previews: getPreviews(state)
+  }),
+  { onPhotosUpload }
+)(Form);
+
