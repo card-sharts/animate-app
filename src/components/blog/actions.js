@@ -21,6 +21,7 @@ export const loadEssays = () => {
 };
 
 export const loadEssay = id => {
+  console.log('hi');
   return {
     type: ESSAY_SELECTED,
     payload: getOneEssay(id)
