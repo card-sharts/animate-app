@@ -23,23 +23,28 @@ class Essays extends PureComponent {
     const [featured, ...rest] = essays;
 
     return (
-      <div className={styles.essays}>
+      <div >
         {featured &&
-          <section>
-            <section>
+          <section className={styles.essays}>
+            <section className="featured">
               <h2>Featured Wedding</h2>
-              <img src={featured.featuredPhotoUrl}/>
-              <NavLink exact to={`/essay/${featured._id} `}>{featured.title}</NavLink>
-            </section>
-            {rest.map(essay => (
-              <NavLink 
-                exact to={`/essay/${essay._id} `}
-                key={essay._id}
-              >
-                <img src={essay.featuredPhotoUrl}/>
-                <h3>{essay.title}</h3>
+              <NavLink exact to={`/essay/${featured._id} `}>
+                <img src={featured.featuredPhotoUrl}/>
+                <h3>{featured.title}</h3>
               </NavLink>
-            ))}
+            </section>
+            <section className="essays">
+              {rest.map(essay => (
+                <NavLink 
+                  exact to={`/essay/${essay._id} `}
+                  key={essay._id}
+                >
+                  <img src={essay.featuredPhotoUrl}/>
+                  <h3>{essay.title}</h3>
+                  <h4>Photography by: Unknown</h4>
+                </NavLink>
+              ))}
+            </section>
           </section>
           
         }

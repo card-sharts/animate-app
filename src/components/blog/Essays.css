@@ -1,5 +1,15 @@
 :local(.essays) {
-  a {
-    display: block
+  display: grid;
+  grid-template: 1fr / 1fr 1fr;
+  grid-gap: 20px;
+  margin: 50px;
+
+
+  .featured img {
+    width: 80%;
+  }
+
+  .essays img {
+    width: 50%;
   }
 }
