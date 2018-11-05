@@ -1,7 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Photos from './Photos';
-import mockEssay from './mockEssay';
 import ReactModal from 'react-modal';
 import { connect } from 'react-redux';
 import { getSelectedPhoto, getSelectedEssay } from './reducers';
@@ -9,7 +8,6 @@ import { loadEssay } from './actions';
 
 class Essay extends PureComponent {
   state = {
-    ...mockEssay,
     showModal: false,
     essay: null
   };

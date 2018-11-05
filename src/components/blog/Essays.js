@@ -20,19 +20,30 @@ class Essays extends PureComponent {
 
   render() { 
     const { essays } = this.props;
+    const [featured, ...rest] = essays;
 
     return (
       <div className={styles.essays}>
-        <h2>Featured Essay</h2>
-        {essays && 
-          essays.map(essay => (
-            <NavLink 
-              exact to={`/essay/${essay._id} `}
-              key={essay._id}
-            >{essay.title}</NavLink>
-          ))
+        {featured &&
+          <section>
+            <section>
+              <h2>Featured Wedding</h2>
+              <img src={featured.featuredPhotoUrl}/>
+              <NavLink exact to={`/essay/${featured._id} `}>{featured.title}</NavLink>
+            </section>
+            {rest.map(essay => (
+              <NavLink 
+                exact to={`/essay/${essay._id} `}
+                key={essay._id}
+              >
+                <img src={essay.featuredPhotoUrl}/>
+                <h3>{essay.title}</h3>
+              </NavLink>
+            ))}
+          </section>
+          
         }
-
+      
       </div>
       
     );
