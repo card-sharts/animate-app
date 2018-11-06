@@ -9,15 +9,14 @@ class Header extends PureComponent {
   render() { 
     return (
       <header className={styles.header}>
-        <h1>Animate</h1>
-        <h1>Collection</h1>
+        <hgroup>
+          <NavLink exact to="/">
+            <h1>Animate</h1>
+            <h1>Collection</h1>
+          </NavLink>
+        </hgroup>
         <nav>
           <ul>
-            <li>
-              <NavLink exact to="/">
-                Home
-              </NavLink>
-            </li>
             <li>
               <NavLink exact to="/about">
                 About
