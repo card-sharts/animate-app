@@ -10,6 +10,7 @@ class Header extends PureComponent {
     return (
       <header className={styles.header}>
         <h1>Animate</h1>
+        <h1>Collection</h1>
         <nav>
           <ul>
             <li>
