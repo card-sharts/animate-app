@@ -8,6 +8,7 @@ import { getPreviews } from './reducers';
 import FormControl from './FormControl';
 import ReferencesForm from './ReferencesForm';
 import { submitEssay } from '../../services/api';
+import { Image, Transformation } from 'cloudinary-react';
 import styles from './Form.css';
 
 
@@ -18,7 +19,7 @@ class Form extends PureComponent {
     q2: '',
     q3: '',
     q4: '',
-    bangerUrl: 'test',
+    featuredPhotoUrl: '',
     photos: [],
     references: []
   };
@@ -45,9 +46,13 @@ class Form extends PureComponent {
     this.setState(({ references }) => ({ references: [...references, reference] }));
   };
 
+  selectFeatured = featuredPhotoUrl => {
+    this.setState({ featuredPhotoUrl });
+  };
+
   render() { 
     const { previews, onPhotosUpload } = this.props;
-    const { title, references } = this.state;
+    const { title, references, featuredPhotoUrl } = this.state;
 
     const questions = [
       'What is your philosophy or approach to wedding photography?',
@@ -60,8 +65,23 @@ class Form extends PureComponent {
       <section className={styles.form}>
         <form onSubmit={this.handleSubmit}>
           <div>
-            <label>Title</label>
-            <input name='title' value={title} onChange={this.handleChange}/>
+            <label>
+              Feature Photo:
+              <Image
+                cloudName="animate"
+                publicId={featuredPhotoUrl}
+                className="thumbnail inline"
+                height="200"
+                crop="scale"
+                quality="100"
+              >
+                <Transformation quality="auto" fetchFormat="auto" />
+              </Image>
+            </label>
+            <label>
+              Title
+              <input name='title' value={title} onChange={this.handleChange}/>
+            </label>
           </div>
           <div>
             <h2>Questions</h2>
@@ -80,20 +100,20 @@ class Form extends PureComponent {
             <ReferencesForm addReference={this.addReference}/>
             
             {
-              references.map(ref => (
-                <li key={ref.type}>
-                  <p>{ref.type}</p>
-                  {ref.website && <p>Website: {ref.website}</p>}
-                  {ref.instagram && <p>Instagram: {ref.instagram}</p>}
+              references.map(({ type, website, instagram }) => (
+                <li key={type}>
+                  <p>{type}</p>
+                  {website && <p>Website: {website}</p>}
+                  {instagram && <p>Instagram: {instagram}</p>}
                 </li>
               ))
             }
           </div>
-          <button>Submit</button>
+          <button type="submit">Submit</button>
         </form>
         <section>
           <Uploader onPhotosUpload={onPhotosUpload}/>
-          <Previews previews={previews}/>
+          <Previews onClick={this.selectFeatured} previews={previews}/>
         </section>
       </section>
       

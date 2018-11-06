@@ -1,13 +1,16 @@
 :local(.form) {
   display: grid;
   grid-template-columns: 50% 50%; 
+  margin: 50px;
 
-  form > div {
-    margin: 5px;
-  }
+  form {
+    div {
+      margin: 5px;
+    }
 
-  form > button {
-    width: 150px;
-    font-size: 2em;
+    button[type='submit'] {
+      width: 150px;
+      font-size: 2em;
+    }
   }
 }

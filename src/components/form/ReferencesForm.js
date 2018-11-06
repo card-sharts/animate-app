@@ -51,8 +51,8 @@ class ReferencesForm extends PureComponent {
             ))
           }
         </select>
-        <InputControl name="website" value={website} onChange={this.handleChange}/>
-        <InputControl name="instagram" value={instagram} onChange={this.handleChange}/>
+        <InputControl name="website" value={website} onChange={this.handleChange} placeholder="optional"/>
+        <InputControl name="instagram" value={instagram} onChange={this.handleChange} placeholder="optional"/>
         <button onClick={this.handleAdd}>Add</button>
       </div>
     );

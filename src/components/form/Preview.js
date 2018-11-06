@@ -5,7 +5,13 @@ import { Image, Transformation } from 'cloudinary-react';
 class Preview extends PureComponent {
 
   static propTypes = {
-    publicId: PropTypes.string.isRequired
+    publicId: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired
+  };
+
+  handleClick = () => {
+    const { publicId, onClick } = this.props;
+    onClick(publicId);
   };
 
   render() { 
@@ -14,10 +20,10 @@ class Preview extends PureComponent {
         cloudName="animate"
         publicId={this.props.publicId}
         className="thumbnail inline"
-        width="150"
+        onClick={this.handleClick}
         height="150"
         crop="scale"
-        quality="80"
+        quality="100"
       >
         <Transformation quality="auto" fetchFormat="auto" />
       </Image>

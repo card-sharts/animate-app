@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 import Preview from './Preview';
 
 class Previews extends PureComponent {
-  state = {  }
+  state = {
+  };
 
   static propTypes = {
-    previews: PropTypes.array
+    previews: PropTypes.array,
+    onClick: PropTypes.func.isRequired
   };
 
   render() { 
-    const { previews } = this.props;
+    const { previews, onClick } = this.props;
     return (
       <section>
         <h2>Photo Previews</h2>
@@ -19,6 +21,7 @@ class Previews extends PureComponent {
             ? previews.map(preview => (
               <Preview
                 key={preview.publicId}
+                onClick={onClick}
                 publicId={preview.publicId}
               />
             ))
