@@ -1,11 +1,9 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import Error from './Error';
+// import Error from './Error';
 import styles from './Header.css';
 
 class Header extends PureComponent {
-  state = {  }
   render() { 
     return (
       <header className={styles.header}>
