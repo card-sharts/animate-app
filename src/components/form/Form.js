@@ -19,7 +19,7 @@ class Form extends PureComponent {
     q2: '',
     q3: '',
     q4: '',
-    featuredPhotoUrl: '',
+    featuredPhotoUrl: null,
     photos: [],
     references: []
   };
@@ -64,27 +64,33 @@ class Form extends PureComponent {
     return (
       <section className={styles.form}>
         <form onSubmit={this.handleSubmit}>
+          <h1>Photo Essay Submission Form</h1>
+          
           <div>
             <label>
-              Feature Photo:
-              <Image
-                cloudName="animate"
-                publicId={featuredPhotoUrl}
-                className="thumbnail inline"
-                height="200"
-                crop="scale"
-                quality="100"
-              >
-                <Transformation quality="auto" fetchFormat="auto" />
-              </Image>
+              <span>Cover Photo:</span>
+              {featuredPhotoUrl
+                ? <Image
+                  cloudName="animate"
+                  publicId={featuredPhotoUrl}
+                  className="thumbnail inline"
+                  height="200"
+                  crop="scale"
+                  quality="100"
+                >
+                  <Transformation quality="auto" fetchFormat="auto" />
+                </Image>
+                : <span> Select a photo from previews.</span>
+              }
             </label>
             <label>
-              Title
+              <span>Title:</span>
               <input name='title' value={title} onChange={this.handleChange}/>
             </label>
           </div>
+
           <div>
-            <h2>Questions</h2>
+            <h2>Questionnaire</h2>
             <ol>
               {
                 questions.map((question, i) => (
@@ -95,6 +101,7 @@ class Form extends PureComponent {
               }
             </ol>
           </div>
+
           <div>
             <h2>References</h2>
             <ReferencesForm addReference={this.addReference}/>
@@ -109,12 +116,16 @@ class Form extends PureComponent {
               ))
             }
           </div>
+
           <button type="submit">Submit</button>
         </form>
+
+
         <section>
           <Uploader onPhotosUpload={onPhotosUpload}/>
           <Previews onClick={this.selectFeatured} previews={previews}/>
         </section>
+
       </section>
       
     );

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Preview from './Preview';
-
+import styles from './Previews.css';
 class Previews extends PureComponent {
   state = {
   };
@@ -14,7 +14,7 @@ class Previews extends PureComponent {
   render() { 
     const { previews, onClick } = this.props;
     return (
-      <section>
+      <section className={styles.previews}>
         <h2>Photo Previews</h2>
         {
           previews.length > 0
