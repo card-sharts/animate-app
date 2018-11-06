@@ -53,15 +53,14 @@ export default connect(
 
 const EssayTile = ({ essay }) => (
   <div>
-    <Link exact to={`/essay/${essay._id}`}>
+    <Link to={`/essay/${essay._id}`}>
       <img src={essay.featuredPhotoUrl}/>
     </Link>
     <hgroup>
-      <Link exact to={`/essay/${essay._id}`}>
+      <Link to={`/essay/${essay._id}`}>
         <h3>{essay.title}</h3>
       </Link>
       <h4>Photography by: Unknown</h4>
     </hgroup>
-
   </div>
 );
