@@ -21,7 +21,8 @@ class Form extends PureComponent {
     q4: '',
     featuredPhotoUrl: null,
     photos: [],
-    references: []
+    references: [],
+    tags: []
   };
 
   static propTypes = {

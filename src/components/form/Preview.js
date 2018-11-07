@@ -19,7 +19,7 @@ class Preview extends PureComponent {
       <Image
         cloudName="animate"
         publicId={this.props.publicId}
-        className="thumbnail inline"
+        className="thumbnail block"
         onClick={this.handleClick}
         height="150"
         crop="scale"

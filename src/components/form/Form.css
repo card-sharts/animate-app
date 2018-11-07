@@ -1,12 +1,12 @@
 :local(.form) {
   display: grid;
-  grid-template-columns: 50% 50%; 
+  grid-template-columns: 50% 45%; 
   grid-gap: 50px;
   margin: 50px;
 
   form {
     display: grid;
-    grid-template-rows: min-content;
+    grid-template: 1fr / 1fr;
     grid-gap: 30px;
 
     div {
@@ -16,6 +16,10 @@
 
     ol {
       padding-left: 20px;
+
+      li {
+        margin: 10px;
+      }
     }
 
     label {
@@ -24,9 +28,6 @@
       margin-top: 20px;
     }
 
-    input {
-      
-    }
 
     button[type='submit'] {
       width: 150px;

@@ -2,6 +2,18 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ReferencesForm.css';
 
+const referenceType = [
+  'Venue',
+  'Planner/coordinator',
+  'Florist', 'Caterer',
+  'DJ',
+  'Entertainment',
+  'Hair',
+  'Makeup',
+  'Officiant',
+  'Other'
+];
+
 class ReferencesForm extends PureComponent {
   state = {
     type: '',
@@ -29,28 +41,20 @@ class ReferencesForm extends PureComponent {
 
   render() { 
     const { type, website, instagram } = this.state;
-    const referenceType = [
-      'Venue',
-      'Planner/coordinator',
-      'Florist', 'Caterer',
-      'DJ',
-      'Entertainment',
-      'Hair',
-      'Makeup',
-      'Officiant',
-      'Other'
-    ];
-
+    
     return (
       <div className={styles.referencesForm}>
-        <select name="type" value={type} onChange={this.handleChange}>
-          <option disabled value=""></option>
-          {
-            referenceType.map((type, i) => (
-              <option key={i} value={type}>{type}</option>
-            ))
-          }
-        </select>
+        <label>
+          <span>Category</span>
+          <select name="type" value={type} onChange={this.handleChange}>
+            <option disabled value=""></option>
+            {
+              referenceType.map((type, i) => (
+                <option key={i} value={type}>{type}</option>
+              ))
+            }
+          </select>
+        </label>
         <InputControl name="website" value={website} onChange={this.handleChange} placeholder="optional"/>
         <InputControl name="instagram" value={instagram} onChange={this.handleChange} placeholder="optional"/>
         <button onClick={this.handleAdd}>Add</button>

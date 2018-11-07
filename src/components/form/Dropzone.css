@@ -1,8 +1,10 @@
 :local(.dropzone) {
   border: 1px solid #E7E7E7;
   height: 60px;
-  width: 80%;
+  width: 100%;
   transition: all .5s ease;
+  text-align: center;
+  padding-top: 15px;
   
   
 }
