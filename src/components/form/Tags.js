@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import Tag from './Tag';
+import styles from './Tags.css';
 
 class Tags extends PureComponent {
   state = {
@@ -7,19 +9,25 @@ class Tags extends PureComponent {
   };
 
   static propTypes = {
-    tags: PropTypes.array.isRequired
+    tags: PropTypes.array.isRequired,
+    handleSelect: PropTypes.func.isRequired
   };
 
   render() { 
     const { options } = this.state;
+    const { tags, handleSelect } = this.props;
 
     return (
-      <div>
+      <div className={styles.tags}>
         <ul>
-          
           {
             options.map(option => (
-              <li key={option}>{option}</li>
+              <Tag
+                tags={tags}
+                key={option}
+                option={option}
+                handleSelect={handleSelect}
+              />
             ))
           }
         </ul>

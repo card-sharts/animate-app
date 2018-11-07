@@ -9,6 +9,7 @@ import FormControl from './FormControl';
 import ReferencesForm from './ReferencesForm';
 import { submitEssay } from '../../services/api';
 import { Image, Transformation } from 'cloudinary-react';
+import Tags from './Tags';
 import styles from './Form.css';
 
 
@@ -43,6 +44,14 @@ class Form extends PureComponent {
     });
   };
 
+  selectTag = option => {
+    const { tags } = this.state;
+    if(tags.includes(option)) {
+      this.setState({ tags: tags.filter(tag => tag !== option) });
+    }
+    else this.setState({ tags: [...tags, option] });
+  };
+
   addReference = reference => {
     this.setState(({ references }) => ({ references: [...references, reference] }));
   };
@@ -53,7 +62,7 @@ class Form extends PureComponent {
 
   render() { 
     const { previews, onPhotosUpload } = this.props;
-    const { title, references, featuredPhotoUrl } = this.state;
+    const { title, references, featuredPhotoUrl, tags } = this.state;
 
     const questions = [
       'What is your philosophy or approach to wedding photography?',
@@ -124,6 +133,7 @@ class Form extends PureComponent {
 
         <section>
           <Uploader onPhotosUpload={onPhotosUpload}/>
+          <Tags tags={tags} handleSelect={this.selectTag}/>
           <Previews onClick={this.selectFeatured} previews={previews}/>
         </section>
 
