@@ -17,8 +17,12 @@ class Tag extends PureComponent {
   };
 
   render() { 
+    const { option, tags } = this.props;
     return (
-      <li onClick={this.handleClick} className={styles.tag}>
+      <li
+        onClick={this.handleClick}
+        className={tags.includes(option) ? 'selected' : ''}
+      >
         {this.props.option}
       </li>
     );

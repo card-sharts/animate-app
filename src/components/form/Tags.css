@@ -12,5 +12,9 @@
     li:hover {
       background: #E7E7E7;
     }
+
+    .selected {
+      border: 1px solid black;
+    }
   }
 }
