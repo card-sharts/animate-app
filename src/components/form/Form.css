@@ -1,18 +1,24 @@
 :local(.form) {
   display: grid;
-  grid-template-columns: 50% 45%; 
-  grid-gap: 50px;
+  grid-template-columns: 47.5% 47.5%; 
+  grid-gap: 5%;
   margin: 50px;
+
+  div, h1 {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e7e7e7;
+  }
 
   form {
     display: grid;
-    grid-template: 1fr / 1fr;
+    grid-template-rows: repeat(5, min-content);
     grid-gap: 30px;
 
-    div {
-      padding-bottom: 20px;
-      border-bottom: 1px solid #e7e7e7;
+    h1 {
+      font-size: 2em;
     }
+
+    
 
     ol {
       padding-left: 20px;

@@ -5,7 +5,7 @@ import styles from './Tags.css';
 
 class Tags extends PureComponent {
   state = {
-    options: ['black and white', 'Jewish', 'Christian', 'same sex'], 
+    options: ['black & white', 'same-sex', 'african-american', 'christian', 'muslim', 'jewish', 'hindu'], 
   };
 
   static propTypes = {
@@ -19,6 +19,7 @@ class Tags extends PureComponent {
 
     return (
       <div className={styles.tags}>
+        <h2>Tags</h2>
         <ul>
           {
             options.map(option => (

@@ -1,11 +1,13 @@
 :local(.tags) {
   ul {
     display: flex;
+    padding: 0;
     list-style-type: none;
+    
+
     li {
       padding: 10px;
       border: 1px solid #E7E7E7;
-      margin: 10px;
       transition: all .3s ease;
     }
 
