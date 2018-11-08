@@ -52,6 +52,21 @@ class Essay extends PureComponent {
             </div>
 
             <div>
+              <h3>References</h3>
+              <section>
+                {
+                  essay.references.map(({ category, websiteUrl, instagram }, i) => (
+                    <article key={i}>
+                      <h5>{category}</h5>
+                      {websiteUrl && <a href={websiteUrl}>Website</a>}
+                      {instagram && <a href={instagram}>Instagram</a>}
+                    </article>
+                  ))
+                }
+              </section>
+            </div>
+
+            <div>
               <h3>Photographer</h3>
               <p>placeholder space for photographer headshot and info</p>
             </div>

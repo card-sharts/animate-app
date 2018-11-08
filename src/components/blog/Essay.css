@@ -22,13 +22,9 @@
     }
   }
 
-  
-
   .tags {
     display: flex;
     flex-wrap: wrap;
-
-    
 
     li {
       list-style-type: none;
