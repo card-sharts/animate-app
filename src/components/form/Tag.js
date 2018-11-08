@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import styles from './Tag.css';
 
 class Tag extends PureComponent {
   state = {  };
@@ -8,12 +7,12 @@ class Tag extends PureComponent {
   static propTypes = {
     tags: PropTypes.array.isRequired,
     option: PropTypes.string.isRequired,
-    handleSelect: PropTypes.func.isRequired
+    handleSelect: PropTypes.func
   };
 
   handleClick = () => {
     const { option, handleSelect } = this.props;
-    handleSelect(option);
+    if(handleSelect) handleSelect(option);
   };
 
   render() { 

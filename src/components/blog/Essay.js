@@ -4,6 +4,7 @@ import Photos from './Photos';
 import { connect } from 'react-redux';
 import { getSelectedEssay } from './reducers';
 import { loadEssay } from './actions';
+import Tag from '../form/Tag';
 import styles from './essay.css';
 
 class Essay extends PureComponent {
@@ -37,11 +38,23 @@ class Essay extends PureComponent {
               <p>{essay.q4}</p>
             </div>
 
+            <Photos photos={essay.photos}/>
+
             <div>
-              <p>Tags</p>
+              <h3>Tags</h3>
+              <section className="tags">
+                {
+                  essay.tags.map(tag => (
+                    <Tag key={tag} option={tag} tags={essay.tags}/>
+                  ))
+                }
+              </section>
             </div>
 
-            <Photos photos={essay.photos}/>
+            <div>
+              <h3>Photographer</h3>
+              <p>placeholder space for photographer headshot and info</p>
+            </div>
           </section>
         }
       </Fragment>

@@ -12,13 +12,13 @@ class Photos extends PureComponent {
   render() { 
     const { photos } = this.props;
     return (
-      <section className={styles.photos}>
+      <div className={styles.photos}>
         {
           photos.map(photo => (
             <Photo key={photo._id} photo={photo}/>
           ))
         }
-      </section>
+      </div>
     );
   }
 }

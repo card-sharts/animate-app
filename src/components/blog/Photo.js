@@ -12,7 +12,7 @@ class Photo extends PureComponent {
     const { photoUrl } = this.props.photo;
 
     return (
-      <div className={styles.photo}>
+      <article className={styles.photo}>
         <Image
           cloudName="animate"
           publicId={photoUrl}
@@ -25,7 +25,7 @@ class Photo extends PureComponent {
             fetchFormat="auto"
           />
         </Image>
-      </div>
+      </article>
     );
   }
 }
