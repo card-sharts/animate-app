@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loadEssays } from './actions';
 import { getEssays } from './reducers';
+import { Image, Transformation } from 'cloudinary-react';
 import styles from './Essays.css';
 
 class Essays extends PureComponent {
@@ -54,7 +55,16 @@ export default connect(
 const EssayTile = ({ essay }) => (
   <div>
     <Link to={`/essay/${essay._id}`}>
-      <img src={essay.featuredPhotoUrl}/>
+      <Image
+        cloudName="animate"
+        publicId={essay.featuredPhotoUrl}
+        className="thumbnail inline"
+        height="200"
+        crop="scale"
+        quality="100"
+      >
+        <Transformation quality="auto" fetchFormat="auto" />
+      </Image>
     </Link>
     <hgroup>
       <Link to={`/essay/${essay._id}`}>

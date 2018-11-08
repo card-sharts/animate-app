@@ -1,7 +1,6 @@
 function request(url, options = {}, data) {
   if(data) options.body = JSON.stringify(data);
   console.log('URL', url);
-  console.log('options', options);
   return fetch(url, options)
     .then(response => [response.ok, response.json()])
     .then(([ok, json]) => {

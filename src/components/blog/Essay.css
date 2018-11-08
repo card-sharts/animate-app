@@ -1,0 +1,16 @@
+:local(.essay) {
+  
+  header {
+    width: 100%;
+    padding: 50px;
+    font-size: 2.5em;
+    text-align: center;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+}
