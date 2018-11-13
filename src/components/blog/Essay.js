@@ -17,6 +17,7 @@ class Essay extends PureComponent {
   
   componentDidMount() {
     const { loadEssay, match } = this.props;
+    console.log('we mounted');
     loadEssay(match.params.id);
   }
 
