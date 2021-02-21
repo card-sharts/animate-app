@@ -1,0 +1,22 @@
+:local(.tags) {
+  ul {
+    display: flex;
+    padding: 0;
+    list-style-type: none;
+    
+
+    li {
+      padding: 10px;
+      border: 1px solid #E7E7E7;
+      transition: all .3s ease;
+    }
+
+    li:hover {
+      background: #E7E7E7;
+    }
+
+    .selected {
+      border: 1px solid black;
+    }
+  }
+}

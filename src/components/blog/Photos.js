@@ -7,19 +7,18 @@ class Photos extends PureComponent {
 
   static propTypes = {
     photos: PropTypes.array.isRequired,
-    toggleModal: PropTypes.func.isRequired
   };
 
   render() { 
-    const { photos, toggleModal } = this.props;
+    const { photos } = this.props;
     return (
-      <section className={styles.photos}>
+      <div className={styles.photos}>
         {
           photos.map(photo => (
-            <Photo key={photo._id} photo={photo} toggleModal={toggleModal}/>
+            <Photo key={photo._id} photo={photo}/>
           ))
         }
-      </section>
+      </div>
     );
   }
 }

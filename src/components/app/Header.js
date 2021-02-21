@@ -1,22 +1,20 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import Error from './Error';
+// import Error from './Error';
 import styles from './Header.css';
 
 class Header extends PureComponent {
-  state = {  }
   render() { 
     return (
       <header className={styles.header}>
-        <h1>Animate</h1>
+        <hgroup>
+          <NavLink exact to="/">
+            <h1>Animate</h1>
+            <h1>Collection</h1>
+          </NavLink>
+        </hgroup>
         <nav>
           <ul>
-            <li>
-              <NavLink exact to="/">
-                Home
-              </NavLink>
-            </li>
             <li>
               <NavLink exact to="/about">
                 About

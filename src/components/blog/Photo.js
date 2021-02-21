@@ -1,35 +1,33 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Image, Transformation } from 'cloudinary-react';
 import styles from './Photo.css';
-import { connect } from 'react-redux';
-import { setModalPhoto } from './actions';
 
 class Photo extends PureComponent {
   static propTypes = {
     photo: PropTypes.object.isRequired,
-    toggleModal: PropTypes.func.isRequired,
-    setModalPhoto: PropTypes.func.isRequired
-  };
-
-  handleModal = () => {
-    const { toggleModal, photo, setModalPhoto } = this.props;
-    setModalPhoto(photo);
-    toggleModal();
   };
 
   render() { 
-    const { photoUrl, caption, tags  } = this.props.photo;
+    const { photoUrl } = this.props.photo;
 
     return (
-      <div className={styles.photo} onClick={this.handleModal}>
-        <img src={photoUrl}/>
-      </div>
+      <article className={styles.photo}>
+        <Image
+          cloudName="animate"
+          publicId={photoUrl}
+          type="fetch"
+        >
+          <Transformation
+            quality="auto"
+            height="790"
+            crop="scale"
+            fetchFormat="auto"
+          />
+        </Image>
+      </article>
     );
   }
 }
  
-export default connect(
-  null,
-  { setModalPhoto }
-)(Photo);
+export default Photo;

@@ -4,17 +4,20 @@
 }
 
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Abel', sans-serif;
+h1, h2, h3, h4, h5, h6, nav a {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+h4, h5, h6 {
+  font-weight: 400;
 }
 
 p, a, button, input, label, li {
-  font-family: 'Mitr', sans-serif;
+  font-family: 'Lora', sans-serif;
   font-weight: 200;
+  
 }
 
-
-nav a {
-  font-family: 'Abel', sans-serif;
-  text-decoration: none;
-}

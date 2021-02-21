@@ -7,7 +7,6 @@ class Blog extends PureComponent {
   render() { 
     return (
       <section>
-        <h2>Blog</h2>
         <Essays/>
       </section>
     );

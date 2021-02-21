@@ -8,6 +8,8 @@ import { getPreviews } from './reducers';
 import FormControl from './FormControl';
 import ReferencesForm from './ReferencesForm';
 import { submitEssay } from '../../services/api';
+import { Image, Transformation } from 'cloudinary-react';
+import Tags from './Tags';
 import styles from './Form.css';
 
 
@@ -18,9 +20,10 @@ class Form extends PureComponent {
     q2: '',
     q3: '',
     q4: '',
-    bangerUrl: 'test',
+    featuredPhotoUrl: null,
     photos: [],
-    references: []
+    references: [],
+    tags: []
   };
 
   static propTypes = {
@@ -41,13 +44,25 @@ class Form extends PureComponent {
     });
   };
 
+  selectTag = option => {
+    const { tags } = this.state;
+    if(tags.includes(option)) {
+      this.setState({ tags: tags.filter(tag => tag !== option) });
+    }
+    else this.setState({ tags: [...tags, option] });
+  };
+
   addReference = reference => {
     this.setState(({ references }) => ({ references: [...references, reference] }));
   };
 
+  selectFeatured = featuredPhotoUrl => {
+    this.setState({ featuredPhotoUrl });
+  };
+
   render() { 
     const { previews, onPhotosUpload } = this.props;
-    const { title, references } = this.state;
+    const { title, references, featuredPhotoUrl, tags } = this.state;
 
     const questions = [
       'What is your philosophy or approach to wedding photography?',
@@ -59,12 +74,33 @@ class Form extends PureComponent {
     return (
       <section className={styles.form}>
         <form onSubmit={this.handleSubmit}>
+          <h1>Photo Essay Submission Form</h1>
+          
           <div>
-            <label>Title</label>
-            <input name='title' value={title} onChange={this.handleChange}/>
+            <label>
+              <span>Cover Photo:</span>
+              {featuredPhotoUrl
+                ? <Image
+                  cloudName="animate"
+                  publicId={featuredPhotoUrl}
+                  className="thumbnail inline"
+                  height="200"
+                  crop="scale"
+                  quality="100"
+                >
+                  <Transformation quality="auto" fetchFormat="auto" />
+                </Image>
+                : <span> Select a photo from previews.</span>
+              }
+            </label>
+            <label>
+              <span>Title:</span>
+              <input name='title' value={title} onChange={this.handleChange}/>
+            </label>
           </div>
+
           <div>
-            <h2>Questions</h2>
+            <h2>Questionnaire</h2>
             <ol>
               {
                 questions.map((question, i) => (
@@ -75,26 +111,32 @@ class Form extends PureComponent {
               }
             </ol>
           </div>
+
           <div>
             <h2>References</h2>
             <ReferencesForm addReference={this.addReference}/>
             
             {
-              references.map(ref => (
-                <li key={ref.type}>
-                  <p>{ref.type}</p>
-                  {ref.website && <p>Website: {ref.website}</p>}
-                  {ref.instagram && <p>Instagram: {ref.instagram}</p>}
+              references.map(({ type, website, instagram }) => (
+                <li key={type}>
+                  <p>{type}</p>
+                  {website && <p>Website: {website}</p>}
+                  {instagram && <p>Instagram: {instagram}</p>}
                 </li>
               ))
             }
           </div>
-          <button>Submit</button>
+
+          <button type="submit">Submit</button>
         </form>
+
+
         <section>
           <Uploader onPhotosUpload={onPhotosUpload}/>
-          <Previews previews={previews}/>
+          <Tags tags={tags} handleSelect={this.selectTag}/>
+          <Previews onClick={this.selectFeatured} previews={previews}/>
         </section>
+
       </section>
       
     );

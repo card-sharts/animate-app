@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone';
 import { uploadPhotos } from '../../services/cloudinary';
+import styles from './Dropzone.css';
 
-class Uploader extends Component {
-  state = {  }
+class Uploader extends PureComponent {
 
   static propTypes = {
     previewPhotos: PropTypes.array,
@@ -25,7 +25,7 @@ class Uploader extends Component {
           onDrop={this.handleDrop} 
           multiple 
           accept="image/*" 
-          // style={styles.dropzone}
+          className={styles.dropzone}
         >
           <p>Drop your files or click here to upload</p>
         </Dropzone>
